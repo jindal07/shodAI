@@ -1,0 +1,59 @@
+spring:
+  application:
+    name: contest-platform
+  
+  datasource:
+    url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_NAME:contest_db}
+    username: ${DB_USER:postgres}
+    password: ${DB_PASSWORD:postgres}
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 5
+      connection-timeout: 30000
+  
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        jdbc:
+          batch_size: 20
+    open-in-view: false
+  
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+
+server:
+  port: ${SERVER_PORT:8080}
+  error:
+    include-message: always
+    include-binding-errors: always
+
+# Judge Configuration
+judge:
+  docker:
+    image: judge-env:latest
+    memory-limit: 256m
+    cpu-limit: 1.0
+    timeout-seconds: 5
+    network-mode: none
+  temp-dir: ${JUDGE_TEMP_DIR:/tmp/judge}
+  worker-threads: 4
+  queue-capacity: 100
+
+# Logging
+logging:
+  level:
+    root: INFO
+    com.shodhai.contest: DEBUG
+    org.springframework.web: INFO
+    org.hibernate.SQL: DEBUG
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
+

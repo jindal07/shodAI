@@ -1,0 +1,43 @@
+# IDE
+.idea/
+.vscode/
+*.iml
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Build
+target/
+build/
+dist/
+out/
+
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Environment
+.env
+.env.local
+.env*.local
+
+# Logs
+*.log
+logs/
+
+# Temp
+/tmp/
+*.tmp
+
+# Database
+*.db
+*.sqlite
+
+# Docker
+.dockerignore
+
+
+
